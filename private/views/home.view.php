@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
+<?php
+$this->view('includes/header');
+$this->view('includes/navbar');
+?>
+<div class="container">
     <h1>this is home</h1>
-</body>
-</html>
+</div>
+
+<?php $this->view('includes/footer') ?>

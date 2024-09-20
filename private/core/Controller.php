@@ -4,10 +4,12 @@ class Controller {
     
 
     public function view($view, $data = array()){
-        if(file_exists("../private/views/" . $view . ".php")){
-            require("../private/views/" . $view . ".php");
+        extract($data);
+
+        if(file_exists("../private/views/" . $view . ".view.php")){
+            require("../private/views/" . $view . ".view.php");
         } else {
-            require("../private/views/404.php");
+            require("../private/views/404.view.php");
         }
     }
 } 
