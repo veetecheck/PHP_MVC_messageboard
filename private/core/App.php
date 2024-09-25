@@ -17,11 +17,11 @@ class App
         $url = $this->getUrl();
         // ---------------------------------------------- controller
         // relativní cesta musí být vzhledem k index.php
-        if (file_exists("../private/controllers/" . ucfirst($url[0]) . ".php")){
+        if (file_exists(PRIVATEROOT . "/controllers/" . ucfirst($url[0]) . ".php")){
             $this->controller = ucfirst($url[0]);
             unset($url[0]);
         }
-        require "../private/controllers/" . $this->controller . ".php";
+        require PRIVATEROOT . "/controllers/" . $this->controller . ".php";
         $this->controller = new $this->controller();
 
         //----------------------------------------------- method
@@ -45,3 +45,6 @@ class App
         return ['home'];
     }
 }
+
+
+

@@ -2,7 +2,7 @@
 
 class Messages extends Controller {
     
-    function index() {
+    public function index() {
         echo "this is messages controller";
     }
 }

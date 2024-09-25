@@ -2,7 +2,17 @@
 
 class Home extends Controller
 {
-    function index() {
-        echo $this->view('home');
+    public function __construct()
+    {
+  
+    }
+
+
+    public function index() {
+        $data = [
+            'title' => 'Welcome to the Messageboard'
+        ];
+        
+        $this->view('home', $data);
     }
 }

@@ -6,10 +6,16 @@ class Controller {
     public function view($view, $data = array()){
         extract($data);
 
-        if(file_exists("../private/views/" . $view . ".view.php")){
+        if(file_exists(PRIVATEROOT . "/views/" . $view . ".view.php")){
             require("../private/views/" . $view . ".view.php");
         } else {
-            require("../private/views/404.view.php");
+            require(PRIVATEROOT . "/views/404.view.php");
         }
+    }
+
+    public function model($model){
+        require(PRIVATEROOT . '/models/' . $model . '.php');
+
+        return new $model();
     }
 } 
