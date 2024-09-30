@@ -8,4 +8,4 @@
     <title>Message board</title>
 </head>
 
-<body>
+<body class="bg-secondary-subtle">
