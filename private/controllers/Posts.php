@@ -78,6 +78,7 @@ class Posts extends Controller
 
             // inicializace dat
             $data = [
+                'id' => $id,
                 'title' => trim($_POST['title']),
                 'text' => trim($_POST['text']),
                 'user_id' => $_SESSION['user_id'],
@@ -97,7 +98,7 @@ class Posts extends Controller
             if (empty($data['title_err']) && empty($data['text_err'])) {
                 // validovano - v poradku
 
-                if ($this->postModel->editPost($data)) {
+                if ($this->postModel->updatePost($data)) {
                     header('location: ' . URLROOT . '/posts/index');
                 } else {
                     die("Something went wrong");
@@ -107,11 +108,38 @@ class Posts extends Controller
                 $this->view('editPost', $data);
             }
         } else {
+            // $post
+            $post = $this->postModel->getPostById($id);
+            // kontrola, kdo je vlastníkem postu
+            if ($post->id_user != $_SESSION['user_id']) {
+                header('location: ' . URLROOT . '/posts/index');
+            }
+
             $data = [
-                'title' => '',
-                'text' => ''
+                'id' => $id,
+                'title' => $post->title,
+                'text' => $post->text
             ];
             $this->view('editPost', $data);
+        }
+    }
+
+    public function delete($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // $post
+            $post = $this->postModel->getPostById($id);
+            // kontrola, kdo je vlastníkem postu
+            if ($post->id_user != $_SESSION['user_id']) {
+                header('location: ' . URLROOT . '/posts/index');
+            } else if (($post->id_user == $_SESSION['user_id']) && $this->postModel->deletePost($id))
+ {
+                header('location: ' . URLROOT . '/posts/index');
+            } else {
+                die("Something went wrong");
+            }
+        } else {
+            header('location: ' . URLROOT . '/posts/index');
         }
     }
 }

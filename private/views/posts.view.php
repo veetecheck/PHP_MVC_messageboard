@@ -25,6 +25,13 @@ $this->view('includes/navbar');
                 <p class="card-text">
                     <i>Written by <?php echo $post->username; ?></i>
                 </p>
+                <hr>
+                <div>
+                    <a class="btn btn-secondary" href="<?php echo URLROOT; ?>/posts/edit/<?php echo $post->post_id; ?>">Edit</a>
+                    <form action="<?php echo URLROOT; ?>/posts/delete/<?php echo $post->post_id; ?>" method="POST" style="display: inline;">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </div>
             </div>
         </div>
     <?php endforeach; ?>

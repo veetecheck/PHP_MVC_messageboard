@@ -34,6 +34,7 @@ class App
         // reset pole, aby šlo od nuly
         $url = array_values($url);
         $this->params = $url;
+
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
