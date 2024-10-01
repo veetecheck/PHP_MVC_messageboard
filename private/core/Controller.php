@@ -7,7 +7,7 @@ class Controller {
         extract($data);
 
         if(file_exists(PRIVATEROOT . "/views/" . $view . ".view.php")){
-            require("../private/views/" . $view . ".view.php");
+            require(PRIVATEROOT . "/views/" . $view . ".view.php");
         } else {
             require(PRIVATEROOT . "/views/404.view.php");
         }
