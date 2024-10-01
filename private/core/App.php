@@ -16,7 +16,7 @@ class App
     {
         $url = $this->getUrl();
         // ---------------------------------------------- controller
-        // relativní cesta musí být vzhledem k index.php
+
         if (file_exists(PRIVATEROOT . "/controllers/" . ucfirst($url[0]) . ".php")){
             $this->controller = ucfirst($url[0]);
             unset($url[0]);
